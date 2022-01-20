@@ -1,6 +1,5 @@
 {
   "vetur.validation.template": false,
-  "vetur.format.enable": false,
   "eslint.validate": ["javascript", "javascriptreact", "typescript", "vue"],
   "eslint.workingDirectories": ["./frontend"],
   "vetur.experimental.templateInterpolationService": true

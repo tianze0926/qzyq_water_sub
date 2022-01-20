@@ -81,12 +81,16 @@ module.exports = configure(function (ctx) {
       port: 8080,
       open: true, // opens browser window automatically
       proxy: {
-        '/water':{
-          target: 'http://dingshui.bjqzhd.com',
-          changeOrigin: true,
-          pathRewrite:{
-            '^/water': ''
-          }
+        // '/water':{
+        //   target: 'http://dingshui.bjqzhd.com',
+        //   changeOrigin: true,
+        //   pathRewrite:{
+        //     '^/water': ''
+        //   }
+        // },
+        '/api':{
+          target: 'http://localhost:3000',
+          changeOrigin: true
         }
       }
     },
