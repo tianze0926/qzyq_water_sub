@@ -1,21 +1,44 @@
 package main
 
 import (
+	"embed"
+	"flag"
+	"fmt"
+
+	"github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
 
 	"github.com/tz039e/water_sub/controllers"
 	"github.com/tz039e/water_sub/models"
 )
 
+//go:embed frontend/build
+var frontendFS embed.FS
+
 func main() {
+	// port
+	port := flag.String("port", "", "port")
+	flag.Parse()
+	if *port == "" {
+		panic("port is empty")
+	}
+
+	// gin
+	gin.SetMode(gin.ReleaseMode)
 	r := gin.Default()
+
+	// routing
+	r.Use(static.Serve("/", EmbedDir(frontendFS, "frontend/build")))
 	api := r.Group("/api")
 	{
 		api.GET("/record", controllers.GetRecords)
 		api.POST("/record", controllers.PostRecord)
 	}
 
+	// db setup
 	models.ConnectDB()
 
-	r.Run(":3000") // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
+	// run
+	fmt.Println("listening on port", *port)
+	r.Run(":" + *port)
 }
