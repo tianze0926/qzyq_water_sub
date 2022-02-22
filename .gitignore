@@ -19,3 +19,5 @@ go.work
 
 # sqlite
 *.db
+
+water_sub
