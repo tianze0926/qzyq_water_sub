@@ -21,7 +21,7 @@ func GetRecords(c *gin.Context) {
 	}
 
 	var records []models.Record
-	models.DB.Order("id desc").Limit(size).Offset(size * (page - 1)).Find(&records)
+	models.DB.Order("id desc").Limit(size).Offset(size * page).Find(&records)
 
 	var count int64
 	models.DB.Model(&models.Record{}).Count(&count)
