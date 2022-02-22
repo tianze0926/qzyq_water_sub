@@ -21,4 +21,8 @@ go.work
 *.db
 
 water_sub
+
+.vscode/
+
+
 dist/
