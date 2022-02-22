@@ -16,7 +16,8 @@ import (
 var frontendFS embed.FS
 
 func main() {
-	// port
+	// flags
+	addr := flag.String("addr", "", "listen address")
 	port := flag.String("port", "", "port")
 	flag.Parse()
 	if *port == "" {
@@ -40,5 +41,5 @@ func main() {
 
 	// run
 	fmt.Println("listening on port", *port)
-	r.Run(":" + *port)
+	r.Run(*addr + ":" + *port)
 }
