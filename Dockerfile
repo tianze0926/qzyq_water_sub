@@ -6,7 +6,7 @@ COPY frontend/ .
 RUN npm install
 RUN npm run build
 
-FROM golang:1.16-alpine as backend_builder
+FROM golang:1-bullseye as backend_builder
 WORKDIR /app
 COPY . .
 COPY --from=frontend_builder /app/build ./frontend/build/
