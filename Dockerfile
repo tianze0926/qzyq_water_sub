@@ -14,6 +14,8 @@ RUN go mod download
 RUN go build -o ./main
 
 FROM alpine:latest
-COPY --from=backend_builder /app/main /main
+VOLUME /db
 EXPOSE 8080
+WORKDIR /db
+COPY --from=backend_builder /app/main /main
 CMD /main -addr 0.0.0.0 -port 8080
