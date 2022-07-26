@@ -13,7 +13,7 @@ COPY --from=frontend_builder /app/build ./frontend/build/
 RUN go mod download
 RUN go build -o ./main
 
-FROM alpine:latest
+FROM ubuntu:focal
 VOLUME /db
 EXPOSE 8080
 WORKDIR /db
